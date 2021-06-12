@@ -57,8 +57,7 @@ def get_maxvalues():
 			counter=counter-1
 			red_blink(15)
 	mx30.reset()
-	print(average(hr_vals))
-	print(average(sp_vals))
+	return ([average(hr_vals),average(sp_vals)])
 
 def red_blink(pin):
 	GPIO.output(pin,GPIO.LOW)
@@ -81,6 +80,8 @@ camera.resolution = (640, 480)
 camera.framerate = 32
 rawCapture = PiRGBArray(camera, size=(640, 480))
 time.sleep(0.1)
+mqttc = mqtt.Client()
+mqttc.connect(MQTT_HOST, MQTT_PORT, MQTT_KEEPALIVE_INTERVAL)
 try:
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
             frame = frame.array
@@ -91,8 +92,12 @@ try:
                     gpio_buzzer(14)
                     GPIO.output(18,GPIO.HIGH)
                     GPIO.output(15,GPIO.LOW)
-                    get_maxvalues()
-                    print(get_mlxtemp())
+                    max_arr= get_maxvalues()
+                    mlx_value=get_mlxtemp()
+                    sendstr={"id": str(barcodes[0].data.decode("utf-8")) ,"heartrate":max_arr[0],"spo2":max_arr[1],"temp": mlx_value}
+                    MQTT_MSG=json.dumps(sendstr);
+                    mqttc.publish(MQTT_TOPIC, MQTT_MSG)
+                    
                     
             #cv2.imshow("Vitals Monitoring System", frame)
             key = cv2.waitKey(1) & 0xFF
