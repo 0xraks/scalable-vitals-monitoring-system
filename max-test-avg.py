@@ -22,12 +22,15 @@ def get_maxvalues():
         if ((pubval1 > 30) and (pubval2 > 30)):
             sp_vals.append(pubval1)
             hr_vals.append(pubval2)
-            counter=counter-1
+            
             print("Added "+ str(counter))
         time.sleep(0.25)
+        if (len(sp_vals)!=0):
+            counter=counter-1
 
     print(average(hr_vals))
     print(average(sp_vals))
+    mx30.reset()
     
 
 get_maxvalues()
