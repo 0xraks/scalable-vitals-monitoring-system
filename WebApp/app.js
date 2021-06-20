@@ -10,7 +10,8 @@ const { Schema } = require("influx/lib/src/schema");
 const axios = require("axios");
 const fetch = require("node-fetch");
 const { result } = require("lodash");
-
+const PORT = 3000 ; 
+const HOST = '0.0.0.0';
 const app = express();
 const server = require("http").createServer(app);
 const { Server } = require("socket.io");
@@ -138,8 +139,8 @@ app.get("/api/:id", (request, response) => {
 //     res.redirect("/dashboard");
 // });
 
-server.listen(3000, function () {
-    console.log("Server started on port 3000");
+server.listen(PORT,HOST, function () {
+    console.log(`Server started on port  ${PORT}`);
 });
 
 // //------------
