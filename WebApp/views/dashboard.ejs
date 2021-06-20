@@ -1,0 +1,126 @@
+<%- include("partials/header.ejs") -%>
+
+
+
+<div class="container">
+
+    <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0">INFO</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>
+                        <h5 class="font-weight-normal" style="text-align: left;">User ID: </h5>
+                        <h5 id="userId" style="text-align: right;">-</h5>
+                    </li>
+                    <li>
+                        <h5 class="font-weight-normal" style="text-align: left;">Kiosk ID: </h5>
+                        <h5 id="kioskId" style="text-align: right;">-</h5>
+                    </li>
+                </ul>
+                <!-- <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="card-deck mb-3 text-center">
+        <div id="heartRateCard" class="card mb-4 box-shadow">
+            <div id="heartRateCardHeader" class="card-header">
+                <h4 class="my-0">HEART RATE</h4>
+            </div>
+            <div class="card-body">
+                <h1 id="heartRate" class="card-title pricing-card-title heartRate"><%= content.heartRate %> <small
+                        class="text-muted">BPM</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Ideally in the range</li>
+                    <li>60BPM - 100BPM</li>
+                </ul>
+                <!-- <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button> -->
+            </div>
+        </div>
+        <div id="temperatureCard" class="card mb-4 box-shadow">
+            <div id="temperatureCardHeader" class="card-header">
+                <h4 class="my-0">TEMPERATURE</h4>
+            </div>
+            <div class="card-body">
+                <h1 id="temperature" class="card-title pricing-card-title temperature"><%= content.temperature %>
+                    <small class="text-muted">ºC</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Ideally in the range</li>
+                    <li>36.1ºC - 37.5ºC</li>
+                </ul>
+                <!-- <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button> -->
+            </div>
+        </div>
+        <div id="spo2Card" class="card mb-4 box-shadow">
+            <div id="spo2CardHeader" class="card-header">
+                <h4 class="my-0">BLOOD OXYGEN</h4>
+            </div>
+            <div class="card-body">
+                <h1 id="spo2" class="card-title pricing-card-title spo2"><%= content.spo2 %> <small
+                        class="text-muted">%</small>
+                </h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Ideally in the range</li>
+                    <li>95% - 100%</li>
+                </ul>
+                <!-- <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button> -->
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0">HEART RATE</h4>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="myChart1"></canvas>
+                </div>
+            </div>
+            <!-- <div id="graphs-container" width="600" height="250"> -->
+            <!-- Append graph here -->
+        </div>
+    </div>
+    <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0">TEMPERATURE</h4>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0">BLOOD OXYGEN</h4>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="myChart3"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"
+    integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+<%- include("partials/footer.ejs") -%>
